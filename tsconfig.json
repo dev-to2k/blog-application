@@ -20,7 +20,9 @@
     "build",
     "node_modules",
     "typings/globals",
-    "typings/modules",
-    "client"
+    "typings/modules"
+  ],
+  "include": [
+    "src"
   ]
 }
