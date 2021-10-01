@@ -1,10 +1,11 @@
 import React from 'react';
+import LoginPass from "../components/auth/LoginPass";
 
 const Login = () => {
   return (
-    <div>
-      <h2>Login Page</h2>
-    </div>
+    <>
+      <LoginPass/>
+    </>
   );
 };
 
