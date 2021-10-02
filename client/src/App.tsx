@@ -4,10 +4,12 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PageRender from "./PageRender";
 import Header from "./components/global/Header";
 import Footer from "./components/global/Footer";
+import Alert from "./components/alert/Alert";
 
 function App() {
   return (
     <BrowserRouter>
+      <Alert/>
       <Header/>
       <div className="container px-5 mx-auto">
         <Switch>
