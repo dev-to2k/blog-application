@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 
-const URI = process.env.MONGODB_URL
+const URL = process.env.MONGODB_URL
 
-mongoose.connect(`${URI}`, (err) => {
+mongoose.connect(`${URL}`, (err) => {
   if (err) throw err
   console.log('Mongodb connection')
 })
