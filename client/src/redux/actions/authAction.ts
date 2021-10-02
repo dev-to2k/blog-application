@@ -2,11 +2,19 @@ import {IUserLogin} from "../../utils/TypeScript";
 import {AUTH, IAuthType} from "../types/authType";
 import {Dispatch} from "redux";
 import {postAPI} from "../../utils/FetchData";
+import {ALERT, IAlertType} from "../types/alertTye";
 
-export const login = (userLogin: IUserLogin) => async (dispatch: Dispatch<IAuthType>) => {
+export const login = (userLogin: IUserLogin) => async (dispatch: Dispatch<IAuthType | IAlertType>) => {
   try {
+    dispatch({
+      type: ALERT,
+      payload: {
+        loading: true
+      }
+    })
+
     const res = await postAPI('login', userLogin)
-    console.log(res)
+
     dispatch({
       type: AUTH,
       payload: {
@@ -14,8 +22,20 @@ export const login = (userLogin: IUserLogin) => async (dispatch: Dispatch<IAuthT
         user: res.data.user
       }
     })
+
+    dispatch({
+      type: ALERT,
+      payload: {
+        success: 'Login success!'
+      }
+    })
   } catch (e: any) {
-    console.log(e.response.data.msg)
+    dispatch({
+      type: ALERT,
+      payload: {
+        errors: e.response.data.msg
+      }
+    })
   }
 
 }
