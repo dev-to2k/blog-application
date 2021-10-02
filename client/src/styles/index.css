@@ -22,3 +22,6 @@ body {
 main {
     display: block;
 }
+
+/* SPINNER */
+@import url('spinner.css');
