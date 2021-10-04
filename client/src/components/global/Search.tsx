@@ -1,5 +1,5 @@
 import React from "react";
-import {SearchIcon} from "@heroicons/react/solid";
+import { SearchIcon } from "@heroicons/react/solid";
 
 const Search = () => {
   return (
@@ -11,7 +11,7 @@ const Search = () => {
         placeholder="Search"
       />
       <button type="submit" className="absolute right-0 top-0 mt-2.5 mr-4">
-        <SearchIcon className="h-5 w-5 text-blue-600"/>
+        <SearchIcon className="h-5 w-5 text-blue-600" />
       </button>
     </div>
   );

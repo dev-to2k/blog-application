@@ -1,19 +1,19 @@
-import React, {useState} from "react";
-import {LoginIcon} from "@heroicons/react/outline";
-import {FormSubmit, InputChange} from "../../utils/TypeScript";
-import {useDispatch} from "react-redux";
-import {login} from "../../redux/actions/authAction";
+import React, { useState } from "react";
+import { LoginIcon } from "@heroicons/react/outline";
+import { FormSubmit, InputChange } from "../../utils/TypeScript";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions/authAction";
 
 const LoginPass = () => {
-  const initialState = {account: "", password: ""};
+  const initialState = { account: "", password: "" };
   const [userLogin, setUserLogin] = useState(initialState);
-  const {account, password} = userLogin;
+  const { account, password } = userLogin;
 
   const dispatch = useDispatch();
 
   const handleChangeInput = (e: InputChange) => {
-    const {value, name} = e.target;
-    setUserLogin({...userLogin, [name]: value});
+    const { value, name } = e.target;
+    setUserLogin({ ...userLogin, [name]: value });
   };
 
   const handleSubmit = (e: FormSubmit) => {
@@ -23,7 +23,7 @@ const LoginPass = () => {
 
   return (
     <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
-      <input type="hidden" name="remember" defaultValue="true"/>
+      <input type="hidden" name="remember" defaultValue="true" />
       <div className="rounded-md shadow-sm -space-y-px">
         <div className="grid gap-6">
           <div className="col-span-12">
@@ -67,7 +67,7 @@ const LoginPass = () => {
           type="submit"
           className="group relative mt-7 w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          <LoginIcon className="w-4 left-4 top-2.5 absolute"/>
+          <LoginIcon className="w-4 left-4 top-2.5 absolute" />
           Sign in
         </button>
       </div>

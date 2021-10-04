@@ -58,12 +58,12 @@ export const showErrMsg = (msg: string) => {
 export const showSuccessMsg = (msg: string) => {
   return (
     <div
-      className="shadow-lg mx-auto my-5 rounded-lg"
+      className="shadow-lg text-center mx-auto my-5 rounded-lg"
       style={{width: "350px"}}
     >
       <div className="p-5">
-        <h5 className="text-xl text-center font-semibold mb-2">
-          <CheckCircleIcon className={`w-14 text-green-600`}/>
+        <h5 className="text-xl font-semibold mb-2">
+          <CheckCircleIcon className={`w-14 mx-auto text-green-600`}/>
         </h5>
         <p className="mb-4">{msg}</p>
       </div>
