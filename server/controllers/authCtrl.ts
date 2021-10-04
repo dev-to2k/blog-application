@@ -33,7 +33,7 @@ const authCtrl = {
         sendSms(account, url, 'Verify your phone number')
         return res.json({msg: 'Success! Please check your phone'})
       }
-    } catch (e) {
+    } catch (e: any) {
       return res.status(500).json({msg: e})
     }
   },
@@ -47,23 +47,17 @@ const authCtrl = {
 
       if (!newUser) return res.status(400).json({msg: "Invalid authentication."})
 
-      const user = new Users(newUser)
+      const user = await Users.findOne({account: newUser.account})
+      if (user) return res.status(400).json({msg: "Account already exists."})
 
-      await user.save()
+      const new_user = new Users(newUser)
+
+      await new_user.save()
 
       res.json({msg: "Account has been activated!"})
 
-    } catch (e) {
-      let errMsg;
-
-      if (e.code === 11000) {
-        errMsg = Object.keys(e.keyValue)[0] + " already exists."
-      } else {
-        let name = Object.keys(e.errors)[0]
-        errMsg = e.errors[`${name}`].message
-      }
-
-      return res.status(500).json({msg: errMsg})
+    } catch (e: any) {
+      return res.status(500).json({msg: e.message})
     }
   },
   login: async (req: Request, res: Response) => {
