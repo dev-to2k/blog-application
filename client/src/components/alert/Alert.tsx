@@ -42,12 +42,12 @@ export const Alert = () => {
 export const showErrMsg = (msg: string) => {
   return (
     <div
-      className="shadow-md text-center mx-auto my-5 rounded-md"
+      className="shadow-lg text-center mx-auto my-5 rounded-lg"
       style={{ width: "350px" }}
     >
       <div className="p-5">
         <h5 className="text-xl font-semibold mb-2">
-          <CheckCircleIcon className={`w-10 mx-auto text-green-600`} />
+          <CheckCircleIcon className={`w-14 mx-auto text-green-600`} />
         </h5>
         <p className="mb-4">{msg}</p>
       </div>
@@ -57,10 +57,13 @@ export const showErrMsg = (msg: string) => {
 
 export const showSuccessMsg = (msg: string) => {
   return (
-    <div className="shadow-md m-auto rounded-md" style={{ width: "350px" }}>
+    <div
+      className="shadow-lg mx-auto my-5 rounded-lg"
+      style={{ width: "350px" }}
+    >
       <div className="p-5">
         <h5 className="text-xl font-semibold mb-2">
-          <XCircleIcon className={`w-10 text-red-600`} />
+          <XCircleIcon className={`w-14 text-red-600`} />
         </h5>
         <p className="mb-4">{msg}</p>
       </div>
