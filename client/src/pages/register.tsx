@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import RegisterForm from "../components/auth/RegisterForm";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -14,10 +14,14 @@ const Register = () => {
             </h2>
           </div>
           <div className="rounded-lg bg-white max-w-md rounded overflow-hidden shadow-xl p-5">
-            <RegisterForm/>
+            <RegisterForm />
             <div className="text-sm text-center mt-3">
-              <p>Have already an account?&nbsp;
-                <Link to={`/login`} className="font-medium text-indigo-600 hover:text-indigo-500">
+              <p>
+                Have already an account?&nbsp;
+                <Link
+                  to={`/login`}
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                >
                   Login
                 </Link>
               </p>
