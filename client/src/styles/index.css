@@ -5,23 +5,23 @@
 @tailwind utilities;
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    line-height: 1.15; /* 1 */
-    -webkit-text-size-adjust: 100%; /* 2 */
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
 }
 
 body {
-    font-family: 'Be Vietnam', sans-serif;
+  font-family: "Be Vietnam", sans-serif;
 }
 
 main {
-    display: block;
+  display: block;
 }
 
 /* SPINNER */
-@import url('spinner.css');
+@import url("spinner.css");
