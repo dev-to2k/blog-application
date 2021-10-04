@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "./Menu";
 import Search from "./Search";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Header = () => {
   return (
@@ -23,10 +23,10 @@ const Header = () => {
           >
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
           </svg>
-          <span className="ml-3 text-xl">BlogTo2k</span>
+          <span className="ml-3 text-xl">TO2K</span>
         </Link>
-        <Search />
-        <Menu />
+        <Search/>
+        <Menu/>
       </div>
     </header>
   );
