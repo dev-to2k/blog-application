@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import LoginPass from "../components/auth/LoginPass";
-import { Link } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import LoginSMS from "../components/auth/LoginSMS";
+import {useSelector} from "react-redux";
+import {RootStore} from "../utils/TypeScript";
 
 const Login = () => {
   const [sms, setSms] = useState(false);
+  const history = useHistory()
+
+  const {authReducer} = useSelector((state: RootStore) => state)
+
+  useEffect(() => {
+    if (authReducer.access_token) history.push('/')
+  }, [authReducer.access_token, history])
+
   return (
     <>
       <div className="min-h-screen rounded-lg flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -16,7 +26,7 @@ const Login = () => {
             </h2>
           </div>
           <div className="rounded-lg bg-white max-w-md rounded overflow-hidden shadow-xl p-5">
-            {sms ? <LoginSMS /> : <LoginPass />}
+            {sms ? <LoginSMS/> : <LoginPass/>}
             <div className="flex my-3 items-center justify-between">
               <div className="text-sm">
                 <a
