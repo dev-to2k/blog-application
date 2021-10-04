@@ -95,7 +95,7 @@ const authCtrl = {
 
       const access_token = generateAccessToken({id: user._id})
 
-      res.json({access_token})
+      res.json({access_token, user})
     } catch (e) {
       return res.status(500).json({msg: e.message})
     }
