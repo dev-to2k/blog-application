@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import authReducer from "../../redux/reducers/authReducer";
-import {useDispatch, useSelector} from "react-redux";
-import {InputChange, IUserProfile, RootStore} from "../../utils/TypeScript";
+import { useDispatch, useSelector } from "react-redux";
+import { InputChange, IUserProfile, RootStore } from "../../utils/TypeScript";
 import NotFound from "../global/NotFound";
-import {CameraIcon} from "@heroicons/react/outline";
+import { CameraIcon } from "@heroicons/react/outline";
 
 const UserInfo = () => {
   const initState = {
@@ -13,14 +13,14 @@ const UserInfo = () => {
     password: "",
     cf_password: "",
   };
-  const {authReducer} = useSelector((state: RootStore) => state);
+  const { authReducer } = useSelector((state: RootStore) => state);
   const dispatch = useDispatch();
 
   const [user, setUser] = useState<IUserProfile>(initState);
 
   const handleChangeInput = (e: InputChange) => {
-    const {name, value} = e.target;
-    setUser({...user, [name]: value});
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
   };
 
   const handleChangeFile = (e: InputChange) => {
@@ -29,13 +29,13 @@ const UserInfo = () => {
 
     if (files) {
       const file = files[0];
-      setUser({...user, avatar: file});
+      setUser({ ...user, avatar: file });
     }
   };
 
-  const {name, account, avatar, password, cf_password} = user;
+  const { name, account, avatar, password, cf_password } = user;
 
-  if (!authReducer.user) return <NotFound/>;
+  if (!authReducer.user) return <NotFound />;
 
   return (
     <div className="flex items-center">
@@ -49,9 +49,8 @@ const UserInfo = () => {
               alt="avatar"
               className={`inline object-cover w-16 h-16 mb-3 rounded-full`}
             />
-            <label
-              className="flex items-center py-2 justify-center bg-indigo-600 rounded-lg tracking-wide cursor-pointer hover:bg-indigo-700 text-white">
-              <CameraIcon className="w-5"/>
+            <label className="flex items-center py-2 justify-center bg-indigo-600 rounded-lg tracking-wide cursor-pointer hover:bg-indigo-700 text-white">
+              <CameraIcon className="w-5" />
               <span className="ml-2 text-base leading-normal">
                 Select a file
               </span>
