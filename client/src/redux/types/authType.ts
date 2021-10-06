@@ -1,4 +1,4 @@
-import { IUser } from "../../utils/TypeScript";
+import {IUser} from "../../utils/TypeScript";
 
 export const AUTH = "AUTH";
 
