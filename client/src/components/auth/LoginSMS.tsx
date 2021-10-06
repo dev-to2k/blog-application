@@ -1,11 +1,21 @@
-import React, { useState } from "react";
-import { LoginIcon } from "@heroicons/react/outline";
+import React, {useState} from "react";
+import {LoginIcon} from "@heroicons/react/outline";
+import {useDispatch} from "react-redux";
+import {FormSubmit} from "../../utils/TypeScript";
+import {loginSMS} from "../../redux/actions/authAction";
 
 const LoginSMS = () => {
   const [phone, setPhone] = useState("");
+  const dispatch = useDispatch()
+
+  const handleSubmit = (e: FormSubmit) => {
+    e.preventDefault()
+    dispatch(loginSMS(phone))
+  }
+
   return (
-    <form className="space-y-4" method="POST">
-      <input type="hidden" name="remember" defaultValue="true" />
+    <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
+      <input type="hidden" name="remember" defaultValue="true"/>
       <div className="rounded-md shadow-sm -space-y-px">
         <div className="grid gap-6">
           <div className="col-span-12">
@@ -20,6 +30,7 @@ const LoginSMS = () => {
               name="phone"
               id="phone"
               value={phone}
+              placeholder="Example: +84"
               onChange={(e) => setPhone(e.target.value)}
               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
             />
@@ -31,7 +42,7 @@ const LoginSMS = () => {
           type="submit"
           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          <LoginIcon className="w-4 left-4 top-2.5 absolute" />
+          <LoginIcon className="w-4 left-4 top-2.5 absolute"/>
           Sign in
         </button>
       </div>
