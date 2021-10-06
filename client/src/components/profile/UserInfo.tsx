@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import authReducer from "../../redux/reducers/authReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { InputChange, IUserProfile, RootStore } from "../../utils/TypeScript";
+import {
+  FormSubmit,
+  InputChange,
+  IUserProfile,
+  RootStore,
+} from "../../utils/TypeScript";
 import NotFound from "../global/NotFound";
 import { CameraIcon } from "@heroicons/react/outline";
+import { updateUser } from "../../redux/actions/profileAction";
 
 const UserInfo = () => {
   const initState = {
@@ -33,6 +39,11 @@ const UserInfo = () => {
     }
   };
 
+  const handleSubmit = (e: FormSubmit) => {
+    e.preventDefault();
+    if (avatar || name) dispatch(updateUser(avatar as File, name, authReducer));
+  };
+
   const { name, account, avatar, password, cf_password } = user;
 
   if (!authReducer.user) return <NotFound />;
@@ -40,7 +51,10 @@ const UserInfo = () => {
   return (
     <div className="flex items-center">
       <div className="container mx-auto max-w-md transition duration-300">
-        <form className="py-12 p-10 bg-white rounded-lg shadow-lg">
+        <form
+          className="py-12 p-10 bg-white rounded-lg shadow-lg"
+          onSubmit={handleSubmit}
+        >
           <div className="mb-6 text-center">
             <img
               src={
