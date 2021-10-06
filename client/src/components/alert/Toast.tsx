@@ -1,7 +1,7 @@
 import React from "react";
-import {useDispatch} from "react-redux";
-import {ALERT} from "../../redux/types/alertTye";
-import {XIcon} from "@heroicons/react/solid";
+import { useDispatch } from "react-redux";
+import { ALERT } from "../../redux/types/alertTye";
+import { XIcon } from "@heroicons/react/solid";
 
 interface IProps {
   title: string;
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const Toast = (props: IProps) => {
-  const {title, body, bgColor, textColor, icon} = props;
+  const { title, body, bgColor, textColor, icon } = props;
 
   const dispatch = useDispatch();
 
@@ -25,8 +25,7 @@ const Toast = (props: IProps) => {
 
   return (
     <div className="w-1/3 fixed z-10 right-2 top-2">
-      <div
-        className="flex w-full relative max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 ">
+      <div className="flex w-full relative max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 ">
         <div className={`flex items-center justify-center w-12 ${bgColor}`}>
           {icon}
         </div>
@@ -39,7 +38,7 @@ const Toast = (props: IProps) => {
           </div>
         </div>
         <button className={`absolute right-1 top-1`} onClick={handleClose}>
-          <XIcon className={`w-4`}/>
+          <XIcon className={`w-4`} />
         </button>
       </div>
     </div>

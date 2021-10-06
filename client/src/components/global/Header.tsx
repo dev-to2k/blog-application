@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "./Search";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
 const Header = () => {
@@ -25,8 +25,8 @@ const Header = () => {
           </svg>
           <span className="ml-3 text-xl">TO2K</span>
         </Link>
-        <Search/>
-        <Navbar/>
+        <Search />
+        <Navbar />
       </div>
     </header>
   );
