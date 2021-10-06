@@ -11,6 +11,10 @@ import NotFound from "../global/NotFound";
 import { CameraIcon } from "@heroicons/react/outline";
 import { resetPassword, updateUser } from "../../redux/actions/profileAction";
 
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
 const UserInfo = () => {
   const initState = {
     name: "",
@@ -123,12 +127,24 @@ const UserInfo = () => {
             </label>
             <input
               type="password"
-              className="border py-2 px-4 w-full outline-none focus:ring-2 focus:ring-indigo-400 rounded"
+              className={classNames(
+                authReducer.user.type !== "register"
+                  ? "cursor-not-allowed bg-gray-100"
+                  : "",
+                "border py-2 px-4 w-full outline-none focus:ring-2 focus:ring-indigo-400 rounded"
+              )}
               name="password"
               id="password"
               value={password}
               onChange={handleChangeInput}
+              disabled={authReducer.user.type !== "register"}
             />
+            {authReducer.user.type !== "register" && (
+              <small className="text-red-600">
+                Quick login account with {authReducer.user.type} can't use this
+                function
+              </small>
+            )}
           </div>
           <div className={`mb-3`}>
             <label
@@ -139,12 +155,24 @@ const UserInfo = () => {
             </label>
             <input
               type="password"
-              className="border py-2 px-4 w-full outline-none focus:ring-2 focus:ring-indigo-400 rounded"
+              className={classNames(
+                authReducer.user.type !== "register"
+                  ? "cursor-not-allowed bg-gray-100"
+                  : "",
+                "border py-2 px-4 w-full outline-none focus:ring-2 focus:ring-indigo-400 rounded"
+              )}
               name="cf_password"
               id="cf_password"
               value={cf_password}
               onChange={handleChangeInput}
+              disabled={authReducer.user.type !== "register"}
             />
+            {authReducer.user.type !== "register" && (
+              <small className="text-red-600">
+                Quick login account with {authReducer.user.type} can't use this
+                function
+              </small>
+            )}
           </div>
           <button
             type="submit"
