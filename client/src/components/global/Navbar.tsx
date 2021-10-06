@@ -23,7 +23,7 @@ const Navbar = () => {
 
   const afLoginLinks = [
     { label: "Home", path: "/" },
-    { label: "CreateBlog", path: "/create_blog" },
+    { label: "Create Blog", path: "/create_blog" },
   ];
 
   const navLinks = authReducer.access_token ? afLoginLinks : bfLoginLinks;
