@@ -9,7 +9,7 @@ import {
 } from "../../utils/TypeScript";
 import NotFound from "../global/NotFound";
 import { CameraIcon } from "@heroicons/react/outline";
-import { updateUser } from "../../redux/actions/profileAction";
+import { resetPassword, updateUser } from "../../redux/actions/profileAction";
 
 const UserInfo = () => {
   const initState = {
@@ -42,6 +42,9 @@ const UserInfo = () => {
   const handleSubmit = (e: FormSubmit) => {
     e.preventDefault();
     if (avatar || name) dispatch(updateUser(avatar as File, name, authReducer));
+
+    if (password && authReducer.access_token)
+      dispatch(resetPassword(password, cf_password, authReducer.access_token));
   };
 
   const { name, account, avatar, password, cf_password } = user;
