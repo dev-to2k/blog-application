@@ -29,7 +29,7 @@ const Category = () => {
           <form className="flex mt-4" onSubmit={handleSubmit}>
             <input
               className="border focus:border-black focus:outline-none rounded w-full py-2 px-3 mr-4 text-black"
-              placeholder="Add Todo"
+              placeholder="Add category"
               v-model="msg"
               name="category"
               value={name}
