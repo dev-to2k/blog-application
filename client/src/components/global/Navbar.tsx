@@ -34,16 +34,25 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex flex-wrap items-center text-base justify-center">
+      <nav className="flex flex-wrap items-center gap-3 text-base justify-center">
         {navLinks.map((link, index) => (
           <Link
             key={index}
             to={link.path}
-            className={`mr-5 hover:text-gray-900 ${isActive(link.path)}`}
+            className={`hover:text-gray-900 ${isActive(link.path)}`}
           >
             {link.label}
           </Link>
         ))}
+
+        {authReducer.user?.role === "admin" && (
+          <Link
+            to="/category"
+            className={`hover:text-gray-900 ${isActive("/category")}`}
+          >
+            Category
+          </Link>
+        )}
 
         {authReducer.user && (
           <Menu as="div" className="relative inline-block text-left">
