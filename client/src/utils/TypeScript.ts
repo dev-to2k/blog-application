@@ -58,6 +58,6 @@ export interface IBlog {
   content: string;
   description: string;
   thumbnail: string | File;
-  category: string;
+  category: string | any;
   createdAt: string;
 }
