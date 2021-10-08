@@ -20,7 +20,10 @@ const CardBlog: React.FC<IProps> = ({ blog }) => {
           )}
         </Link>
         <div className="p-6">
-          <div>
+          <>
+            <span className="text-xs px-2 font-medium bg-indigo-500 text-white rounded py-0.5">
+              {blog.category.name}
+            </span>
             <Link
               to={`/blog/${blog._id}`}
               className="block mt-2 text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600 hover:underline"
@@ -30,7 +33,7 @@ const CardBlog: React.FC<IProps> = ({ blog }) => {
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               {blog.description.slice(0, 100) + "..."}
             </p>
-          </div>
+          </>
 
           <div className="mt-4">
             <div className="flex items-center">
