@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IBlog, IParams, RootStore } from "../../utils/TypeScript";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import NotFound from "../../components/global/NotFound";
 import { getBlogsByCategoryId } from "../../redux/actions/blogAction";
 import CardBlog from "../../components/cards/CardBlog";
+import Pagination from "../../components/global/Pagination";
 
 const BlogsByCategory = () => {
   const { categories, blogsCategory } = useSelector(
@@ -17,6 +18,9 @@ const BlogsByCategory = () => {
   const [blogs, setBlogs] = useState<IBlog[]>();
   const [total, setTotal] = useState(0);
 
+  const history = useHistory();
+  const { search } = history.location;
+
   useEffect(() => {
     const category = categories.find((item) => item.name === slug);
     if (category) setCategoryId(category._id);
@@ -26,14 +30,21 @@ const BlogsByCategory = () => {
     if (!categoryId) return;
 
     if (blogsCategory.every((item) => item.id !== categoryId)) {
-      dispatch(getBlogsByCategoryId(categoryId));
+      dispatch(getBlogsByCategoryId(categoryId, search));
     } else {
       const data = blogsCategory.find((item) => item.id === categoryId);
       if (!data) return;
       setBlogs(data.blogs);
       setTotal(data.total);
+
+      if (data.search) history.push(data.search);
     }
-  }, [categoryId, blogsCategory, dispatch]);
+  }, [categoryId, blogsCategory, dispatch, search, history]);
+
+  const handlePagination = (num: number) => {
+    const search = `?page=${num}`;
+    dispatch(getBlogsByCategoryId(categoryId, search));
+  };
 
   if (!blogs) return <NotFound />;
 
@@ -47,7 +58,7 @@ const BlogsByCategory = () => {
 
           <p className="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">
             <span className="text-xs px-2 uppercase font-medium bg-indigo-500 text-white rounded py-0.5">
-              {categories[0].name}
+              {slug.toString()}
             </span>
           </p>
         </div>
@@ -56,6 +67,7 @@ const BlogsByCategory = () => {
             <CardBlog key={blog._id} blog={blog} />
           ))}
         </div>
+        {total > 1 && <Pagination total={total} callback={handlePagination} />}
       </div>
     </div>
   );
