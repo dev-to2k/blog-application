@@ -9,45 +9,53 @@ interface IProps {
 const CardBlog: React.FC<IProps> = ({ blog }) => {
   return (
     <div className="flex flex-col md:flex-row items-center gap-4 lg:gap-6">
-      <Link
-        to={`/`}
-        className="group w-full md:w-24 lg:w-40 h-56 md:h-24 lg:h-40 block self-start flex-shrink-0 bg-gray-100 overflow-hidden rounded-lg shadow-lg relative"
-      >
-        {typeof blog.thumbnail === "string" && (
-          <img
-            src={blog.thumbnail}
-            className="w-full h-full object-cover object-center absolute inset-0 transform group-hover:scale-110 transition duration-200"
-            alt="..."
-          />
-        )}
-      </Link>
+      <div className="max-w-2xl mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <Link to={`/blog/${blog._id}`}>
+          {typeof blog.thumbnail === "string" && (
+            <img
+              src={blog.thumbnail}
+              className="object-cover w-full h-64"
+              alt={blog.title}
+            />
+          )}
+        </Link>
+        <div className="p-6">
+          <div>
+            <Link
+              to={`/blog/${blog._id}`}
+              className="block mt-2 text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600 hover:underline"
+            >
+              {blog.title.slice(0, 50) + "..."}
+            </Link>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              {blog.description.slice(0, 100) + "..."}
+            </p>
+          </div>
 
-      <div className="flex flex-col gap-2">
-        <span className="text-gray-400 text-sm">
-          {" "}
-          {new Date(blog.createdAt).toLocaleString()}
-        </span>
-
-        <h2 className="text-gray-800 text-xl font-bold">
-          <Link
-            to={`/blog/${blog._id}`}
-            className="hover:text-indigo-500 active:text-indigo-600 transition duration-100"
-          >
-            {blog.title.slice(0, 50) + "..."}
-          </Link>
-        </h2>
-
-        <p className="text-gray-500">
-          {blog.description.slice(0, 100) + "..."}
-        </p>
-
-        <div className="flex items-center justify-between">
-          <Link
-            to={`/blog/${blog._id}`}
-            className="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 font-semibold transition duration-100"
-          >
-            Read more
-          </Link>
+          <div className="mt-4">
+            <div className="flex items-center">
+              <div className="flex items-center">
+                {typeof blog.user !== "string" && (
+                  <>
+                    <img
+                      className="object-cover h-10 rounded-full"
+                      src={blog.user.avatar}
+                      alt="Avatar"
+                    />
+                    <Link
+                      to={`/profile/${blog.user._id}`}
+                      className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
+                    >
+                      {blog.user.name}
+                    </Link>
+                  </>
+                )}
+              </div>
+              <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
+                {new Date(blog.createdAt).toLocaleString()}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
