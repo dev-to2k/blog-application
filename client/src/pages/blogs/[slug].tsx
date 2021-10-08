@@ -46,8 +46,8 @@ const BlogsByCategory = () => {
           </h2>
 
           <p className="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">
-            <span className="text-xs px-2 font-medium bg-indigo-500 text-white rounded py-0.5">
-              Badge
+            <span className="text-xs px-2 uppercase font-medium bg-indigo-500 text-white rounded py-0.5">
+              {categories[0].name}
             </span>
           </p>
         </div>
