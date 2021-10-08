@@ -7,7 +7,7 @@ interface IProps {
   blog: IBlog;
 }
 
-const CardHorizontal: React.FC<IProps> = ({ blog }) => {
+const CardPreview: React.FC<IProps> = ({ blog }) => {
   const { authReducer } = useSelector((state: RootStore) => state);
   return (
     <div className="max-w-2xl mx-auto overflow-hidden bg-white rounded-lg shadow-md">
@@ -32,13 +32,6 @@ const CardHorizontal: React.FC<IProps> = ({ blog }) => {
       )}
       <div className="p-6">
         <div>
-          {blog.category.length === 0 ? (
-            ""
-          ) : (
-            <span className="text-xs px-2 uppercase font-medium bg-indigo-500 text-white rounded py-0.5">
-              {blog.category}
-            </span>
-          )}
           <h5 className="block mt-2 text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600">
             {blog.title}
           </h5>
@@ -68,4 +61,4 @@ const CardHorizontal: React.FC<IProps> = ({ blog }) => {
   );
 };
 
-export default CardHorizontal;
+export default CardPreview;
