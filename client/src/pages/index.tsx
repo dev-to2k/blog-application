@@ -30,31 +30,33 @@ const Home = () => {
 
           <>
             {homeBlogs.map((homeBlog) => (
-              <div key={homeBlog._id}>
-                <div className="flex items-center mb-3">
-                  Category:
-                  <Link
-                    to={`/blogs/${homeBlog.name.toLowerCase()}`}
-                    className="text-xs px-2 ml-3 font-medium bg-indigo-500 text-white rounded py-0.5"
-                  >
-                    {homeBlog.name}
-                  </Link>
-                  {homeBlog.count > 4 && (
-                    <Link
-                      className="flex items-center w-36 ml-auto w- px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
-                      to={`/blogs/${homeBlog.name}`}
-                    >
-                      <span className="mx-1">Read more</span>
-                      <ChevronDoubleRightIcon className="w-5 h-5 mx-1" />
-                    </Link>
-                  )}
-                </div>
+              <div key={homeBlog._id} className="group_category">
                 {homeBlog.count > 0 && (
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 sm:gap-12 xl:gap-16 mb-10">
-                    {homeBlog.blogs.map((blog) => (
-                      <CardBlog key={blog._id} blog={blog} />
-                    ))}
-                  </div>
+                  <>
+                    <div className="flex items-center mb-3">
+                      Category:
+                      <Link
+                        to={`/blogs/${homeBlog.name.toLowerCase()}`}
+                        className="text-xs px-2 ml-3 font-medium bg-indigo-500 text-white rounded py-0.5"
+                      >
+                        {homeBlog.name}
+                      </Link>
+                      {homeBlog.count > 4 && (
+                        <Link
+                          className="flex items-center w-36 ml-auto w- px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
+                          to={`/blogs/${homeBlog.name}`}
+                        >
+                          <span className="mx-1">Read more</span>
+                          <ChevronDoubleRightIcon className="w-5 h-5 mx-1" />
+                        </Link>
+                      )}
+                    </div>
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 sm:gap-12 xl:gap-16 mb-10">
+                      {homeBlog.blogs.map((blog) => (
+                        <CardBlog key={blog._id} blog={blog} />
+                      ))}
+                    </div>
+                  </>
                 )}
               </div>
             ))}
