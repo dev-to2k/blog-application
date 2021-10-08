@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 import CardBlog from "../components/cards/CardBlog";
 import { ChevronDoubleRightIcon } from "@heroicons/react/outline";
 import Hero from "../components/Hero";
+import Spinner from "../components/global/Spinner";
 
 const Home = () => {
   const { homeBlogs } = useSelector((state: RootStore) => state);
+
+  if (homeBlogs.length === 0) return <Spinner />;
   return (
     <>
       <Hero />
