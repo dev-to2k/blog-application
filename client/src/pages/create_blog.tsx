@@ -3,7 +3,7 @@ import { IBlog, RootStore } from "../utils/TypeScript";
 import { useDispatch, useSelector } from "react-redux";
 import NotFound from "../components/global/NotFound";
 import CreateForm from "../components/cards/CreateForm";
-import CardHorizontal from "../components/cards/CardHorizontal";
+import CardPreview from "../components/cards/CardPreview";
 import ReactQuill from "../components/editor/ReactQuill";
 import { validCreateBlog } from "../utils/Valid";
 import { ALERT } from "../redux/types/alertTye";
@@ -60,7 +60,7 @@ const CreateBlog = () => {
         </div>
         <div className="w-full lg:w-6/12 p-3">
           <h5 className="mb-3">Preview</h5>
-          <CardHorizontal blog={blog} />
+          <CardPreview blog={blog} />
         </div>
       </div>
       <ReactQuill setBody={setBody} />
