@@ -117,6 +117,17 @@ const blogCtrl = {
               },
               // array -> object
               { $unwind: "$user" },
+              // Category
+              {
+                $lookup: {
+                  from: "categories",
+                  localField: "category",
+                  foreignField: "_id",
+                  as: "category",
+                },
+              },
+              // array -> object
+              { $unwind: "$category" },
               // Sorting
               { $sort: { createdAt: -1 } },
               { $skip: skip },
