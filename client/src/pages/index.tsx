@@ -33,11 +33,11 @@ const Home = () => {
               <div key={homeBlog._id} className="group_category">
                 {homeBlog.count > 0 && (
                   <>
-                    <div className="flex items-center mb-3">
-                      Category:
+                    <div className="flex items-center mb-5">
+                      <span className="text-4xl font-semibold">Category:</span>
                       <Link
                         to={`/blogs/${homeBlog.name.toLowerCase()}`}
-                        className="text-xs px-2 ml-3 font-medium bg-indigo-500 text-white rounded py-0.5"
+                        className="text-xs px-2 ml-3 mt-3.5 font-medium bg-indigo-600 text-white rounded py-0.5"
                       >
                         {homeBlog.name}
                       </Link>
