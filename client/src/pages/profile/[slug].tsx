@@ -13,7 +13,11 @@ const Profile = () => {
   return (
     <div className={`flex flex-col lg:flex-row bg-gray-100 rounded-lg py-3`}>
       <div className={`w-full lg:w-5/12 my-3 pr-3`}>
-        {authReducer.user?._id === slug ? <UserInfo /> : <OtherInfo />}
+        {authReducer.user?._id === slug ? (
+          <UserInfo />
+        ) : (
+          <OtherInfo id={slug} />
+        )}
       </div>
       <div className={`w-full lg:w-7/12 my-3 pl-3`}>
         <UserBlogs />
