@@ -9,7 +9,7 @@ import {
 } from "../../utils/TypeScript";
 import NotFound from "../global/NotFound";
 import { CameraIcon } from "@heroicons/react/outline";
-import { resetPassword, updateUser } from "../../redux/actions/profileAction";
+import { resetPassword, updateUser } from "../../redux/actions/userAction";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
