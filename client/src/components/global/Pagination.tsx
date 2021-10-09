@@ -44,7 +44,7 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
           onClick={() => handlePagination(num)}
           className={`${isActive(
             num
-          )} flex items-center cursor-pointer shadow-md px-4 py-2 mx-1 transition-colors duration-200 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-indigo-500 dark:hover:text-gray-200`}
+          )} flex items-center cursor-pointer shadow-md px-4 py-2 mx-1 hover:bg-indigo-600 transition-colors duration-200 transform hover:text-white bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-indigo-500 dark:hover:text-gray-200`}
         >
           {num}
         </span>
