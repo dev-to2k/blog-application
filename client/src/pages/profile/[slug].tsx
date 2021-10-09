@@ -11,7 +11,7 @@ const Profile = () => {
   const { authReducer } = useSelector((state: RootStore) => state);
 
   return (
-    <div className={`flex flex-col lg:flex-row`}>
+    <div className={`flex flex-col lg:flex-row bg-gray-100 rounded-lg py-3`}>
       <div className={`w-full lg:w-5/12 my-3 pr-3`}>
         {authReducer.user?._id === slug ? <UserInfo /> : <OtherInfo />}
       </div>
