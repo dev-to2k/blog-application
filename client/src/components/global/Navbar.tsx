@@ -101,7 +101,7 @@ const Navbar = () => {
                       </Link>
                     )}
                   </Menu.Item>
-                  <form method="POST" action="#">
+                  <form method="GET">
                     <Menu.Item>
                       {({ active }) => (
                         <button
