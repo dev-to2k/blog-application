@@ -37,7 +37,7 @@ const Hero = () => {
           </div>
           <div className="xl:w-5/12 h-48 lg:h-auto bg-gray-100 overflow-hidden shadow-lg rounded-lg">
             <img
-              src="https://scontent.fvca1-2.fna.fbcdn.net/v/t1.6435-9/76720767_268545654101201_8598966302633099264_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=174925&_nc_ohc=o27NCJPeWQcAX_wPoP2&_nc_ht=scontent.fvca1-2.fna&oh=b6a08cea925ba342c4d25f28b646149c&oe=61852B3F"
+              src="https://cdn.dribbble.com/users/870476/screenshots/11226950/media/9630cdb5a4e7a93677aba8db2043bae5.jpg?compress=1&resize=1600x1200"
               loading="lazy"
               alt="Photo by Fakurian Design"
               className="w-full h-full object-cover object-center"
