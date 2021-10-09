@@ -26,7 +26,7 @@ const CardBlog: React.FC<IProps> = ({ blog }) => {
             </span>
             <Link
               to={`/blog/${blog._id}`}
-              className="block mt-2 text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600 hover:underline"
+              className="block mt-2 text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600"
             >
               {blog.title.slice(0, 50) + "..."}
             </Link>
