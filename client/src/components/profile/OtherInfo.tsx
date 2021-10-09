@@ -3,7 +3,7 @@ import { IUser, RootStore } from "../../utils/TypeScript";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../global/Spinner";
 import { BriefcaseIcon, UserCircleIcon } from "@heroicons/react/solid";
-import { getOtherInfo } from "../../redux/actions/profileAction";
+import { getOtherInfo } from "../../redux/actions/userAction";
 
 interface IProps {
   id: string;
