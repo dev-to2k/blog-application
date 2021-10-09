@@ -53,8 +53,8 @@ const CreateBlog = () => {
   if (!authReducer.access_token) return <NotFound />;
   return (
     <>
-      <div className="my-4 flex flex-col lg:flex-row gap-3">
-        <div className="w-full lg:w-6/12 p-3">
+      <div className="my-4 flex flex-col lg:flex-row gap-3 bg-gray-100 rounded-lg p-3">
+        <div className="w-full lg:w-6/12 bg-white shadow-md rounded-lg p-3">
           <h5 className="mb-3">Create</h5>
           <CreateForm blog={blog} setBlog={setBlog} />
         </div>
@@ -87,4 +87,4 @@ const CreateBlog = () => {
   );
 };
 
-export default CreateBlog;
+export default React.memo(CreateBlog);
