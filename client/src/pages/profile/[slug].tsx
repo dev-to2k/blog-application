@@ -19,7 +19,7 @@ const Profile = () => {
           <OtherInfo id={slug} />
         )}
       </div>
-      <div className={`w-full lg:w-7/12 my-3 pl-3`}>
+      <div className={`w-full lg:w-7/12 my-3`}>
         <UserBlogs />
       </div>
     </div>
