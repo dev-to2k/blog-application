@@ -36,7 +36,7 @@ const CardBlog: React.FC<IProps> = ({ blog }) => {
           </>
 
           <div className="mt-4">
-            <div className="flex items-center">
+            <>
               <div className="flex items-center">
                 {typeof blog.user !== "string" && (
                   <>
@@ -51,13 +51,13 @@ const CardBlog: React.FC<IProps> = ({ blog }) => {
                     >
                       {blog.user.name}
                     </Link>
+                    <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
+                      {new Date(blog.createdAt).toLocaleString()}
+                    </span>
                   </>
                 )}
               </div>
-              <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-                {new Date(blog.createdAt).toLocaleString()}
-              </span>
-            </div>
+            </>
           </div>
         </div>
       </div>
