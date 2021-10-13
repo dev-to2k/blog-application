@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import LoginPass from "../components/auth/LoginPass";
-import { Link, useHistory } from "react-router-dom";
-import LoginSMS from "../components/auth/LoginSMS";
-import { useSelector } from "react-redux";
-import { RootStore } from "../utils/TypeScript";
-import SocialLogin from "../components/auth/SocialLogin";
+import React, { useEffect, useState } from 'react'
+import LoginPass from '../components/auth/LoginPass'
+import { Link, useHistory } from 'react-router-dom'
+import LoginSMS from '../components/auth/LoginSMS'
+import { useSelector } from 'react-redux'
+import { RootStore } from '../utils/TypeScript'
+import SocialLogin from '../components/auth/SocialLogin'
 
 const Login = () => {
-  const [sms, setSms] = useState(false);
-  const history = useHistory();
+  const [sms, setSms] = useState(false)
+  const history = useHistory()
 
-  const { authReducer } = useSelector((state: RootStore) => state);
+  const { authReducer } = useSelector((state: RootStore) => state)
 
   useEffect(() => {
-    if (authReducer.access_token) history.push("/");
-  }, [authReducer.access_token, history]);
+    if (authReducer.access_token) history.push('/')
+  }, [authReducer.access_token, history])
 
   return (
     <>
@@ -43,7 +43,7 @@ const Login = () => {
                   onClick={() => setSms(!sms)}
                   className="text-sm cursor-pointer text-indigo-600 hover:text-indigo-500 font-medium"
                 >
-                  {sms ? "Sign in with" + " password" : "Sign in with SMS"}
+                  {sms ? 'Sign in with' + ' password' : 'Sign in with SMS'}
                 </p>
               </div>
             </div>
@@ -62,7 +62,7 @@ const Login = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

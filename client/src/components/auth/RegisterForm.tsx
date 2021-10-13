@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import { LoginIcon } from "@heroicons/react/outline";
-import { FormSubmit, InputChange } from "../../utils/TypeScript";
-import { register } from "../../redux/actions/authAction";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react'
+import { LoginIcon } from '@heroicons/react/outline'
+import { FormSubmit, InputChange } from '../../utils/TypeScript'
+import { register } from '../../redux/actions/authAction'
+import { useDispatch } from 'react-redux'
 
 const RegisterForm = () => {
   const initialState = {
-    name: "",
-    account: "",
-    password: "",
-    cf_password: "",
-  };
-  const [userRegister, setUserRegister] = useState(initialState);
-  const { name, account, password, cf_password } = userRegister;
+    name: '',
+    account: '',
+    password: '',
+    cf_password: '',
+  }
+  const [userRegister, setUserRegister] = useState(initialState)
+  const { name, account, password, cf_password } = userRegister
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleChangeInput = (e: InputChange) => {
-    const { value, name } = e.target;
-    setUserRegister({ ...userRegister, [name]: value });
-  };
+    const { value, name } = e.target
+    setUserRegister({ ...userRegister, [name]: value })
+  }
   const handleSubmit = (e: FormSubmit) => {
-    e.preventDefault();
-    dispatch(register(userRegister));
-  };
+    e.preventDefault()
+    dispatch(register(userRegister))
+  }
 
   return (
     <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
@@ -108,7 +108,7 @@ const RegisterForm = () => {
         </button>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default RegisterForm;
+export default RegisterForm

@@ -1,5 +1,5 @@
-import React from "react";
-import { SearchIcon } from "@heroicons/react/solid";
+import React from 'react'
+import { SearchIcon } from '@heroicons/react/solid'
 
 const Search = () => {
   return (
@@ -14,7 +14,7 @@ const Search = () => {
         <SearchIcon className="h-5 w-5 text-blue-600" />
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search

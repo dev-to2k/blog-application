@@ -1,9 +1,9 @@
-import React from "react";
-import { IBlog } from "../../utils/TypeScript";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { IBlog } from '../../utils/TypeScript'
+import { Link } from 'react-router-dom'
 
 interface IProps {
-  blog: IBlog;
+  blog: IBlog
 }
 
 const CardBlog: React.FC<IProps> = ({ blog }) => {
@@ -11,7 +11,7 @@ const CardBlog: React.FC<IProps> = ({ blog }) => {
     <div className="flex flex-col md:flex-row items-center gap-4 lg:gap-6">
       <div className="max-w-2xl mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
         <Link to={`/blog/${blog._id}`}>
-          {typeof blog.thumbnail === "string" && (
+          {typeof blog.thumbnail === 'string' && (
             <img
               src={blog.thumbnail}
               className="object-cover w-full h-64"
@@ -28,17 +28,17 @@ const CardBlog: React.FC<IProps> = ({ blog }) => {
               to={`/blog/${blog._id}`}
               className="block mt-2 text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600"
             >
-              {blog.title.slice(0, 50) + "..."}
+              {blog.title.slice(0, 50) + '...'}
             </Link>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              {blog.description.slice(0, 100) + "..."}
+              {blog.description.slice(0, 100) + '...'}
             </p>
           </>
 
           <div className="mt-4">
             <>
               <div className="flex items-center">
-                {typeof blog.user !== "string" && (
+                {typeof blog.user !== 'string' && (
                   <>
                     <img
                       className="object-cover h-10 rounded-full"
@@ -62,7 +62,7 @@ const CardBlog: React.FC<IProps> = ({ blog }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CardBlog;
+export default CardBlog

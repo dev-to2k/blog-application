@@ -1,6 +1,6 @@
-import React from "react";
-import RegisterForm from "../components/auth/RegisterForm";
-import { Link } from "react-router-dom";
+import React from 'react'
+import RegisterForm from '../components/auth/RegisterForm'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
   return (
@@ -30,7 +30,7 @@ const Register = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

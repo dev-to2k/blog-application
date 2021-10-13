@@ -1,28 +1,28 @@
-import React from "react";
-import NotFound from "./components/global/NotFound";
-import { useParams } from "react-router-dom";
-import { IParams } from "./utils/TypeScript";
+import React from 'react'
+import NotFound from './components/global/NotFound'
+import { useParams } from 'react-router-dom'
+import { IParams } from './utils/TypeScript'
 
 const generatePage = (name: string) => {
-  const component = () => require(`./pages/${name}`).default;
+  const component = () => require(`./pages/${name}`).default
 
   try {
-    return React.createElement(component());
+    return React.createElement(component())
   } catch (e) {
-    return <NotFound />;
+    return <NotFound />
   }
-};
+}
 
 const PageRender = () => {
-  const { page, slug }: IParams = useParams();
+  const { page, slug }: IParams = useParams()
 
-  let name = "";
+  let name = ''
 
   if (page) {
-    name = slug ? `${page}/[slug]` : `${page}`;
+    name = slug ? `${page}/[slug]` : `${page}`
   }
 
-  return generatePage(name);
-};
+  return generatePage(name)
+}
 
-export default PageRender;
+export default PageRender

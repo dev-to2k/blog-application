@@ -2,7 +2,7 @@ import {
   IBlogsUser,
   GET_BLOGS_USER_ID,
   IGetBlogsUserType,
-} from "../types/blogType";
+} from '../types/blogType'
 
 const blogsUserReducer = (
   state: IBlogsUser[] = [],
@@ -11,16 +11,16 @@ const blogsUserReducer = (
   switch (action.type) {
     case GET_BLOGS_USER_ID:
       if (state.every((item) => item.id !== action.payload.id)) {
-        return [...state, action.payload];
+        return [...state, action.payload]
       } else {
         return state.map((blog) =>
           blog.id === action.payload.id ? action.payload : blog
-        );
+        )
       }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default blogsUserReducer;
+export default blogsUserReducer

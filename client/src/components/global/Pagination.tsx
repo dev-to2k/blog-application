@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 interface IProps {
-  total: number;
-  callback: (num: number) => void;
+  total: number
+  callback: (num: number) => void
 }
 
 const Pagination: React.FC<IProps> = ({ total, callback }) => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1)
 
-  const newArr = [...Array(total)].map((_, i) => i + 1);
-  const history = useHistory();
+  const newArr = [...Array(total)].map((_, i) => i + 1)
+  const history = useHistory()
 
   const isActive = (index: number) => {
-    if (index === page) return "bg-indigo-600 text-white";
-    return "";
-  };
+    if (index === page) return 'bg-indigo-600 text-white'
+    return ''
+  }
 
   const handlePagination = (num: number) => {
-    history.push(`?page=${num}`);
-    callback(num);
-  };
+    history.push(`?page=${num}`)
+    callback(num)
+  }
 
   useEffect(() => {
-    const num = history.location.search.slice(6) || 1;
-    setPage(Number(num));
-  }, [history.location.search]);
+    const num = history.location.search.slice(6) || 1
+    setPage(Number(num))
+  }, [history.location.search])
 
   return (
     <div className="flex mt-10 justify-center">
@@ -58,7 +58,7 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
         </span>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination

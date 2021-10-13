@@ -1,16 +1,16 @@
-import React from "react";
-import { RootStore } from "../utils/TypeScript";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import CardBlog from "../components/cards/CardBlog";
-import { ChevronDoubleRightIcon } from "@heroicons/react/outline";
-import Hero from "../components/Hero";
-import Spinner from "../components/global/Spinner";
+import React from 'react'
+import { RootStore } from '../utils/TypeScript'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import CardBlog from '../components/cards/CardBlog'
+import { ChevronDoubleRightIcon } from '@heroicons/react/outline'
+import Hero from '../components/Hero'
+import Spinner from '../components/global/Spinner'
 
 const Home = () => {
-  const { homeBlogs } = useSelector((state: RootStore) => state);
+  const { homeBlogs } = useSelector((state: RootStore) => state)
 
-  if (homeBlogs.length === 0) return <Spinner />;
+  if (homeBlogs.length === 0) return <Spinner />
   return (
     <>
       <Hero />
@@ -64,7 +64,7 @@ const Home = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

@@ -1,8 +1,8 @@
-import React from "react";
-import { IBlog } from "../../utils/TypeScript";
+import React from 'react'
+import { IBlog } from '../../utils/TypeScript'
 
 interface IProps {
-  blog: IBlog;
+  blog: IBlog
 }
 
 const DisplayBlog: React.FC<IProps> = ({ blog }) => {
@@ -10,7 +10,7 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
     <div className="blog-details">
       <h2 className="text-center text-8xl font-bold">{blog.title}</h2>
       <div className="flex items-center mt-10 mb-5">
-        {typeof blog.user !== "string" && (
+        {typeof blog.user !== 'string' && (
           <>
             <img
               className="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
@@ -29,7 +29,7 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
         }}
       />
     </div>
-  );
-};
+  )
+}
 
-export default DisplayBlog;
+export default DisplayBlog

@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { IUser, RootStore } from "../../utils/TypeScript";
-import { useDispatch, useSelector } from "react-redux";
-import Spinner from "../global/Spinner";
-import { BriefcaseIcon, UserCircleIcon } from "@heroicons/react/solid";
-import { getOtherInfo } from "../../redux/actions/userAction";
+import React, { useEffect, useState } from 'react'
+import { IUser, RootStore } from '../../utils/TypeScript'
+import { useDispatch, useSelector } from 'react-redux'
+import Spinner from '../global/Spinner'
+import { BriefcaseIcon, UserCircleIcon } from '@heroicons/react/solid'
+import { getOtherInfo } from '../../redux/actions/userAction'
 
 interface IProps {
-  id: string;
+  id: string
 }
 
 const OtherInfo: React.FC<IProps> = ({ id }) => {
-  const [other, setOther] = useState<IUser>();
+  const [other, setOther] = useState<IUser>()
 
-  const { otherInfo } = useSelector((state: RootStore) => state);
-  const dispatch = useDispatch();
+  const { otherInfo } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!id) return;
+    if (!id) return
 
     if (otherInfo.every((user) => user._id !== id)) {
-      dispatch(getOtherInfo(id));
+      dispatch(getOtherInfo(id))
     } else {
-      const newUser = otherInfo.find((user) => user._id === id);
-      console.log(newUser);
-      if (newUser) setOther(newUser);
+      const newUser = otherInfo.find((user) => user._id === id)
+      console.log(newUser)
+      if (newUser) setOther(newUser)
     }
-  }, [id, otherInfo, dispatch]);
+  }, [id, otherInfo, dispatch])
 
-  if (!other) return <Spinner />;
+  if (!other) return <Spinner />
   return (
     <>
       <div className="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -70,7 +70,7 @@ const OtherInfo: React.FC<IProps> = ({ id }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default OtherInfo;
+export default OtherInfo

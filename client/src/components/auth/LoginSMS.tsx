@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { LoginIcon } from "@heroicons/react/outline";
-import { useDispatch } from "react-redux";
-import { FormSubmit } from "../../utils/TypeScript";
-import { loginSMS } from "../../redux/actions/authAction";
+import React, { useState } from 'react'
+import { LoginIcon } from '@heroicons/react/outline'
+import { useDispatch } from 'react-redux'
+import { FormSubmit } from '../../utils/TypeScript'
+import { loginSMS } from '../../redux/actions/authAction'
 
 const LoginSMS = () => {
-  const [phone, setPhone] = useState("");
-  const dispatch = useDispatch();
+  const [phone, setPhone] = useState('')
+  const dispatch = useDispatch()
 
   const handleSubmit = (e: FormSubmit) => {
-    e.preventDefault();
-    dispatch(loginSMS(phone));
-  };
+    e.preventDefault()
+    dispatch(loginSMS(phone))
+  }
 
   return (
     <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
@@ -47,7 +47,7 @@ const LoginSMS = () => {
         </button>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default LoginSMS;
+export default LoginSMS

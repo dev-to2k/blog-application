@@ -1,25 +1,25 @@
-import { AUTH, IAuth, IAuthType } from "../types/authType";
-import { Dispatch } from "redux";
-import { ALERT, IAlertType } from "../types/alertTye";
-import { checkImage, imageUpload } from "../../utils/ImageUpload";
-import { getAPI, patchAPI } from "../../utils/FetchData";
-import { checkPassword } from "../../utils/Valid";
-import { GET_OTHER_INFO, IGetOtherInfoType } from "../types/profileType";
+import { AUTH, IAuth, IAuthType } from '../types/authType'
+import { Dispatch } from 'redux'
+import { ALERT, IAlertType } from '../types/alertTye'
+import { checkImage, imageUpload } from '../../utils/ImageUpload'
+import { getAPI, patchAPI } from '../../utils/FetchData'
+import { checkPassword } from '../../utils/Valid'
+import { GET_OTHER_INFO, IGetOtherInfoType } from '../types/profileType'
 
 export const updateUser =
   (avatar: File, name: string, auth: IAuth) =>
   async (dispatch: Dispatch<IAlertType | IAuthType>) => {
-    if (!auth.access_token || !auth.user) return;
+    if (!auth.access_token || !auth.user) return
 
-    let url = "";
+    let url = ''
     try {
-      dispatch({ type: ALERT, payload: { loading: true } });
+      dispatch({ type: ALERT, payload: { loading: true } })
       if (avatar) {
-        const check = checkImage(avatar);
-        if (check) return dispatch({ type: ALERT, payload: { errors: check } });
+        const check = checkImage(avatar)
+        if (check) return dispatch({ type: ALERT, payload: { errors: check } })
 
-        const photo = await imageUpload(avatar);
-        url = photo.url;
+        const photo = await imageUpload(avatar)
+        url = photo.url
       }
 
       dispatch({
@@ -32,55 +32,55 @@ export const updateUser =
             name: name ? name : auth.user.name,
           },
         },
-      });
+      })
 
       const res = await patchAPI(
-        "user",
+        'user',
         {
           avatar: url ? url : auth.user.avatar,
           name: name ? name : auth.user.name,
         },
         auth.access_token
-      );
+      )
 
-      dispatch({ type: ALERT, payload: { success: res.data.msg } });
+      dispatch({ type: ALERT, payload: { success: res.data.msg } })
     } catch (err: any) {
-      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } })
     }
-  };
+  }
 
 export const resetPassword =
   (password: string, cf_password: string, token: string) =>
   async (dispatch: Dispatch<IAlertType | IAuthType>) => {
-    const msg = checkPassword(password, cf_password);
-    if (msg) return dispatch({ type: ALERT, payload: { errors: msg } });
+    const msg = checkPassword(password, cf_password)
+    if (msg) return dispatch({ type: ALERT, payload: { errors: msg } })
 
     try {
-      dispatch({ type: ALERT, payload: { loading: true } });
+      dispatch({ type: ALERT, payload: { loading: true } })
 
-      const res = await patchAPI("reset_password", { password }, token);
+      const res = await patchAPI('reset_password', { password }, token)
 
-      dispatch({ type: ALERT, payload: { success: res.data.msg } });
+      dispatch({ type: ALERT, payload: { success: res.data.msg } })
     } catch (err: any) {
-      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } })
     }
-  };
+  }
 
 export const getOtherInfo =
   (id: string) =>
   async (dispatch: Dispatch<IAlertType | IGetOtherInfoType>) => {
     try {
-      dispatch({ type: ALERT, payload: { loading: true } });
+      dispatch({ type: ALERT, payload: { loading: true } })
 
-      const res = await getAPI(`user/${id}`);
+      const res = await getAPI(`user/${id}`)
 
       dispatch({
         type: GET_OTHER_INFO,
         payload: res.data,
-      });
+      })
 
-      dispatch({ type: ALERT, payload: {} });
+      dispatch({ type: ALERT, payload: {} })
     } catch (err: any) {
-      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } })
     }
-  };
+  }

@@ -1,53 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 import {
   CheckIcon,
   PencilAltIcon,
   PlusIcon,
   TrashIcon,
   XIcon,
-} from "@heroicons/react/outline";
-import NotFound from "../components/global/NotFound";
-import { useDispatch, useSelector } from "react-redux";
-import { FormSubmit, ICategory, RootStore } from "../utils/TypeScript";
+} from '@heroicons/react/outline'
+import NotFound from '../components/global/NotFound'
+import { useDispatch, useSelector } from 'react-redux'
+import { FormSubmit, ICategory, RootStore } from '../utils/TypeScript'
 import {
   createCategory,
   deleteCategory,
   updateCategory,
-} from "../redux/actions/categoryAction";
+} from '../redux/actions/categoryAction'
 
 const Category = () => {
-  const [name, setName] = useState("");
-  const [edit, setEdit] = useState<ICategory | null>(null);
+  const [name, setName] = useState('')
+  const [edit, setEdit] = useState<ICategory | null>(null)
 
-  const { authReducer, categories } = useSelector((state: RootStore) => state);
-  const dispatch = useDispatch();
+  const { authReducer, categories } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (edit) setName(edit.name);
-  }, [edit]);
+    if (edit) setName(edit.name)
+  }, [edit])
 
   const handleSubmit = (e: FormSubmit) => {
-    e.preventDefault();
-    if (!authReducer.access_token || !name) return;
+    e.preventDefault()
+    if (!authReducer.access_token || !name) return
 
     if (edit) {
-      if (edit.name === name) return;
-      const data = { ...edit, name };
-      dispatch(updateCategory(data, authReducer.access_token));
+      if (edit.name === name) return
+      const data = { ...edit, name }
+      dispatch(updateCategory(data, authReducer.access_token))
     } else {
-      dispatch(createCategory(name, authReducer.access_token));
+      dispatch(createCategory(name, authReducer.access_token))
     }
 
-    setName("");
-    setEdit(null);
-  };
+    setName('')
+    setEdit(null)
+  }
 
   const handleDelete = (id: string) => {
-    if (!authReducer.access_token) return;
-    dispatch(deleteCategory(id, authReducer.access_token));
-  };
+    if (!authReducer.access_token) return
+    dispatch(deleteCategory(id, authReducer.access_token))
+  }
 
-  if (authReducer.user?.role !== "admin") return <NotFound />;
+  if (authReducer.user?.role !== 'admin') return <NotFound />
   return (
     <div className="min-h-screen rounded-lg flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="rounded-lg shadow-lg bg-white p-6 m-4 w-full lg:w-3/4 lg:max-w-lg md:max-w-2xl">
@@ -103,7 +103,7 @@ const Category = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Category;
+export default Category

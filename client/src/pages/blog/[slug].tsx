@@ -1,46 +1,48 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
-import { IParams, IBlog } from "../../utils/TypeScript";
-import { getAPI } from "../../utils/FetchData";
+import { IParams, IBlog } from '../../utils/TypeScript'
+import { getAPI } from '../../utils/FetchData'
 
-import { showErrMsg } from "../../components/alert/Alert";
-import DisplayBlog from "../../components/blog/DisplayBlog";
-import Spinner from "../../components/global/Spinner";
+import { showErrMsg } from '../../components/alert/Alert'
+import DisplayBlog from '../../components/blog/DisplayBlog'
+import Spinner from '../../components/global/Spinner'
 
 const DetailBlog = () => {
-  const id = useParams<IParams>().slug;
+  const id = useParams<IParams>().slug
 
-  const [blog, setBlog] = useState<IBlog>();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [blog, setBlog] = useState<IBlog>()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    if (!id) return;
+    if (!id) return
 
-    setLoading(true);
+    setLoading(true)
 
     getAPI(`blog/${id}`)
       .then((res) => {
-        setBlog(res.data);
-        setLoading(false);
+        setBlog(res.data)
+        setLoading(false)
       })
       .catch((err) => {
-        setError(err.response.data.msg);
-        setLoading(false);
-      });
+        setError(err.response.data.msg)
+        setLoading(false)
+      })
 
-    return () => setBlog(undefined);
-  }, [id]);
+    return () => setBlog(undefined)
+  }, [id])
 
-  if (loading) return <Spinner />;
+  if (loading) return <Spinner />
   return (
     <div className="my-4">
       {error && showErrMsg(error)}
 
       {blog && <DisplayBlog blog={blog} />}
-    </div>
-  );
-};
 
-export default DetailBlog;
+      <h2>Comments</h2>
+    </div>
+  )
+}
+
+export default DetailBlog

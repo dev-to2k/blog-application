@@ -1,27 +1,27 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { ALERT } from "../../redux/types/alertTye";
-import { XIcon } from "@heroicons/react/solid";
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { ALERT } from '../../redux/types/alertTye'
+import { XIcon } from '@heroicons/react/solid'
 
 interface IProps {
-  title: string;
-  body: string | string[];
-  bgColor: string;
-  textColor: string;
-  icon?: React.ReactNode;
+  title: string
+  body: string | string[]
+  bgColor: string
+  textColor: string
+  icon?: React.ReactNode
 }
 
 const Toast = (props: IProps) => {
-  const { title, body, bgColor, textColor, icon } = props;
+  const { title, body, bgColor, textColor, icon } = props
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleClose = () => {
     dispatch({
       type: ALERT,
       payload: {},
-    });
-  };
+    })
+  }
 
   return (
     <div className="w-1/3 fixed z-10 right-0 top-4">
@@ -35,7 +35,7 @@ const Toast = (props: IProps) => {
               {title}
             </span>
             <div className="w-full mb-3"></div>
-            {typeof body === "string" ? (
+            {typeof body === 'string' ? (
               body
             ) : (
               <ul className="text-sm list-disc pl-3 text-gray-600 dark:text-gray-200">
@@ -52,7 +52,7 @@ const Toast = (props: IProps) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Toast;
+export default Toast

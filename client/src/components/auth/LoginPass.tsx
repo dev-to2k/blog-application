@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { LoginIcon } from "@heroicons/react/outline";
-import { FormSubmit, InputChange } from "../../utils/TypeScript";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/actions/authAction";
+import React, { useState } from 'react'
+import { LoginIcon } from '@heroicons/react/outline'
+import { FormSubmit, InputChange } from '../../utils/TypeScript'
+import { useDispatch } from 'react-redux'
+import { login } from '../../redux/actions/authAction'
 
 const LoginPass = () => {
-  const initialState = { account: "", password: "" };
-  const [userLogin, setUserLogin] = useState(initialState);
-  const { account, password } = userLogin;
+  const initialState = { account: '', password: '' }
+  const [userLogin, setUserLogin] = useState(initialState)
+  const { account, password } = userLogin
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleChangeInput = (e: InputChange) => {
-    const { value, name } = e.target;
-    setUserLogin({ ...userLogin, [name]: value });
-  };
+    const { value, name } = e.target
+    setUserLogin({ ...userLogin, [name]: value })
+  }
 
   const handleSubmit = (e: FormSubmit) => {
-    e.preventDefault();
-    dispatch(login(userLogin));
-  };
+    e.preventDefault()
+    dispatch(login(userLogin))
+  }
 
   return (
     <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
@@ -72,7 +72,7 @@ const LoginPass = () => {
         </button>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default LoginPass;
+export default LoginPass

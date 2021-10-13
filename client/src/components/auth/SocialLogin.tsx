@@ -1,24 +1,24 @@
-import React from "react";
-import { GoogleLogin, GoogleLoginResponse } from "react-google-login-lite";
+import React from 'react'
+import { GoogleLogin, GoogleLoginResponse } from 'react-google-login-lite'
 import {
   FacebookLogin,
   FacebookLoginAuthResponse,
-} from "react-facebook-login-lite";
-import { useDispatch } from "react-redux";
-import { facebookLogin, googleLogin } from "../../redux/actions/authAction";
+} from 'react-facebook-login-lite'
+import { useDispatch } from 'react-redux'
+import { facebookLogin, googleLogin } from '../../redux/actions/authAction'
 
 const SocialLogin = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const onSuccess = (googleUser: GoogleLoginResponse) => {
-    const id_token = googleUser.getAuthResponse().id_token;
-    dispatch(googleLogin(id_token));
-  };
+    const id_token = googleUser.getAuthResponse().id_token
+    dispatch(googleLogin(id_token))
+  }
 
   const onFBSuccess = (response: FacebookLoginAuthResponse) => {
-    const { accessToken, userID } = response.authResponse;
-    dispatch(facebookLogin(accessToken, userID));
-  };
+    const { accessToken, userID } = response.authResponse
+    dispatch(facebookLogin(accessToken, userID))
+  }
 
   return (
     <>
@@ -38,7 +38,7 @@ const SocialLogin = () => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default SocialLogin;
+export default SocialLogin

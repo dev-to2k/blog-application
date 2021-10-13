@@ -1,19 +1,19 @@
-import React from "react";
-import { IBlog, RootStore } from "../../utils/TypeScript";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React from 'react'
+import { IBlog, RootStore } from '../../utils/TypeScript'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 interface IProps {
-  blog: IBlog;
+  blog: IBlog
 }
 
 const CardPreview: React.FC<IProps> = ({ blog }) => {
-  const { authReducer } = useSelector((state: RootStore) => state);
+  const { authReducer } = useSelector((state: RootStore) => state)
   return (
     <div className="max-w-xl mx-auto overflow-hidden bg-white rounded-lg shadow-md">
       {blog.thumbnail && (
         <>
-          {typeof blog.thumbnail === "string" ? (
+          {typeof blog.thumbnail === 'string' ? (
             <Link to={`/blog/${blog._id}`}>
               <img
                 src={blog.thumbnail}
@@ -60,7 +60,7 @@ const CardPreview: React.FC<IProps> = ({ blog }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CardPreview;
+export default CardPreview

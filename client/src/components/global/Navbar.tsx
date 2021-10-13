@@ -1,36 +1,36 @@
-import React, { Fragment } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { RootStore } from "../../utils/TypeScript";
-import { ChevronDownIcon, LogoutIcon } from "@heroicons/react/outline";
-import { logout } from "../../redux/actions/authAction";
-import { Menu, Transition } from "@headlessui/react";
+import React, { Fragment } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootStore } from '../../utils/TypeScript'
+import { ChevronDownIcon, LogoutIcon } from '@heroicons/react/outline'
+import { logout } from '../../redux/actions/authAction'
+import { Menu, Transition } from '@headlessui/react'
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ')
 }
 
 const Navbar = () => {
-  const { authReducer } = useSelector((state: RootStore) => state);
-  const dispatch = useDispatch();
+  const { authReducer } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
 
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
   const bfLoginLinks = [
-    { label: "Login", path: "/login" },
-    { label: "Register", path: "/register" },
-  ];
+    { label: 'Login', path: '/login' },
+    { label: 'Register', path: '/register' },
+  ]
 
   const afLoginLinks = [
-    { label: "Home", path: "/" },
-    { label: "Create Blog", path: "/create_blog" },
-  ];
+    { label: 'Home', path: '/' },
+    { label: 'Create Blog', path: '/create_blog' },
+  ]
 
-  const navLinks = authReducer.access_token ? afLoginLinks : bfLoginLinks;
+  const navLinks = authReducer.access_token ? afLoginLinks : bfLoginLinks
 
   const isActive = (pn: string) => {
-    if (pn === pathname) return "active";
-  };
+    if (pn === pathname) return 'active'
+  }
 
   return (
     <>
@@ -45,10 +45,10 @@ const Navbar = () => {
           </Link>
         ))}
 
-        {authReducer.user?.role === "admin" && (
+        {authReducer.user?.role === 'admin' && (
           <Link
             to="/category"
-            className={`hover:text-gray-900 ${isActive("/category")}`}
+            className={`hover:text-gray-900 ${isActive('/category')}`}
           >
             Category
           </Link>
@@ -83,9 +83,9 @@ const Navbar = () => {
                         to={`/profile/${authReducer.user?._id}`}
                         className={classNames(
                           active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm"
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
                         )}
                       >
                         <div className="flex items-center">
@@ -109,9 +109,9 @@ const Navbar = () => {
                           onClick={() => dispatch(logout())}
                           className={classNames(
                             active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block w-full text-left px-4 py-2 text-sm flex items-center"
+                              ? 'bg-gray-100 text-gray-900'
+                              : 'text-gray-700',
+                            'block w-full text-left px-4 py-2 text-sm flex items-center'
                           )}
                         >
                           <LogoutIcon
@@ -129,7 +129,7 @@ const Navbar = () => {
         )}
       </nav>
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

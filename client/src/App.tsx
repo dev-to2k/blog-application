@@ -1,23 +1,23 @@
-import React, { useEffect } from "react";
-import "./styles/App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import PageRender from "./PageRender";
-import Header from "./components/global/Header";
-import Footer from "./components/global/Footer";
-import { Alert } from "./components/alert/Alert";
-import { useDispatch } from "react-redux";
-import { refreshToken } from "./redux/actions/authAction";
-import { getCategories } from "./redux/actions/categoryAction";
-import { getHomeBlogs } from "./redux/actions/blogAction";
+import React, { useEffect } from 'react'
+import './styles/App.css'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import PageRender from './PageRender'
+import Header from './components/global/Header'
+import Footer from './components/global/Footer'
+import { Alert } from './components/alert/Alert'
+import { useDispatch } from 'react-redux'
+import { refreshToken } from './redux/actions/authAction'
+import { getCategories } from './redux/actions/categoryAction'
+import { getHomeBlogs } from './redux/actions/blogAction'
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getHomeBlogs());
-    dispatch(getCategories());
-    dispatch(refreshToken());
-  }, [dispatch]);
+    dispatch(getHomeBlogs())
+    dispatch(getCategories())
+    dispatch(refreshToken())
+  }, [dispatch])
 
   return (
     <BrowserRouter>
@@ -32,7 +32,7 @@ function App() {
       </div>
       <Footer />
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,17 +1,13 @@
-import React from "react";
-import { RootStore } from "../../utils/TypeScript";
+import React from 'react'
+import { RootStore } from '../../utils/TypeScript'
 
-import Loading from "./Loading";
-import Toast from "./Toast";
-import { useSelector } from "react-redux";
-import {
-  CheckCircleIcon,
-  CheckIcon,
-  XCircleIcon,
-} from "@heroicons/react/solid";
+import Loading from './Loading'
+import Toast from './Toast'
+import { useSelector } from 'react-redux'
+import { CheckCircleIcon, CheckIcon, XCircleIcon } from '@heroicons/react/solid'
 
 export const Alert = () => {
-  const { alertReducer } = useSelector((state: RootStore) => state);
+  const { alertReducer } = useSelector((state: RootStore) => state)
   return (
     <div>
       {alertReducer.loading && <Loading />}
@@ -36,14 +32,14 @@ export const Alert = () => {
         />
       )}
     </div>
-  );
-};
+  )
+}
 
 export const showErrMsg = (msg: string) => {
   return (
     <div
       className="shadow-lg text-center mx-auto my-5 rounded-lg"
-      style={{ width: "350px" }}
+      style={{ width: '350px' }}
     >
       <div className="p-5">
         <h5 className="text-xl text-center font-semibold mb-2">
@@ -52,14 +48,14 @@ export const showErrMsg = (msg: string) => {
         <p className="mb-4">{msg}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const showSuccessMsg = (msg: string) => {
   return (
     <div
       className="shadow-lg text-center mx-auto my-5 rounded-lg"
-      style={{ width: "350px" }}
+      style={{ width: '350px' }}
     >
       <div className="p-5">
         <h5 className="text-xl font-semibold mb-2">
@@ -68,5 +64,5 @@ export const showSuccessMsg = (msg: string) => {
         <p className="mb-4">{msg}</p>
       </div>
     </div>
-  );
-};
+  )
+}

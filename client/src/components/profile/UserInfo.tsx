@@ -1,59 +1,59 @@
-import React, { useState } from "react";
-import authReducer from "../../redux/reducers/authReducer";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from 'react'
+import authReducer from '../../redux/reducers/authReducer'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   FormSubmit,
   InputChange,
   IUserProfile,
   RootStore,
-} from "../../utils/TypeScript";
-import NotFound from "../global/NotFound";
-import { CameraIcon } from "@heroicons/react/outline";
-import { resetPassword, updateUser } from "../../redux/actions/userAction";
+} from '../../utils/TypeScript'
+import NotFound from '../global/NotFound'
+import { CameraIcon } from '@heroicons/react/outline'
+import { resetPassword, updateUser } from '../../redux/actions/userAction'
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ')
 }
 
 const UserInfo = () => {
   const initState = {
-    name: "",
-    account: "",
-    avatar: "",
-    password: "",
-    cf_password: "",
-  };
-  const { authReducer } = useSelector((state: RootStore) => state);
-  const dispatch = useDispatch();
+    name: '',
+    account: '',
+    avatar: '',
+    password: '',
+    cf_password: '',
+  }
+  const { authReducer } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
 
-  const [user, setUser] = useState<IUserProfile>(initState);
+  const [user, setUser] = useState<IUserProfile>(initState)
 
   const handleChangeInput = (e: InputChange) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
+    const { name, value } = e.target
+    setUser({ ...user, [name]: value })
+  }
 
   const handleChangeFile = (e: InputChange) => {
-    const target = e.target as HTMLInputElement;
-    const files = target.files;
+    const target = e.target as HTMLInputElement
+    const files = target.files
 
     if (files) {
-      const file = files[0];
-      setUser({ ...user, avatar: file });
+      const file = files[0]
+      setUser({ ...user, avatar: file })
     }
-  };
+  }
 
   const handleSubmit = (e: FormSubmit) => {
-    e.preventDefault();
-    if (avatar || name) dispatch(updateUser(avatar as File, name, authReducer));
+    e.preventDefault()
+    if (avatar || name) dispatch(updateUser(avatar as File, name, authReducer))
 
     if (password && authReducer.access_token)
-      dispatch(resetPassword(password, cf_password, authReducer.access_token));
-  };
+      dispatch(resetPassword(password, cf_password, authReducer.access_token))
+  }
 
-  const { name, account, avatar, password, cf_password } = user;
+  const { name, account, avatar, password, cf_password } = user
 
-  if (!authReducer.user) return <NotFound />;
+  if (!authReducer.user) return <NotFound />
 
   return (
     <div className="flex items-center">
@@ -128,18 +128,18 @@ const UserInfo = () => {
             <input
               type="password"
               className={classNames(
-                authReducer.user.type !== "register"
-                  ? "cursor-not-allowed bg-gray-100"
-                  : "",
-                "border py-2 px-4 w-full outline-none focus:ring-2 focus:ring-indigo-400 rounded"
+                authReducer.user.type !== 'register'
+                  ? 'cursor-not-allowed bg-gray-100'
+                  : '',
+                'border py-2 px-4 w-full outline-none focus:ring-2 focus:ring-indigo-400 rounded'
               )}
               name="password"
               id="password"
               value={password}
               onChange={handleChangeInput}
-              disabled={authReducer.user.type !== "register"}
+              disabled={authReducer.user.type !== 'register'}
             />
-            {authReducer.user.type !== "register" && (
+            {authReducer.user.type !== 'register' && (
               <small className="text-red-600">
                 Quick login account with {authReducer.user.type} can't use this
                 function
@@ -156,18 +156,18 @@ const UserInfo = () => {
             <input
               type="password"
               className={classNames(
-                authReducer.user.type !== "register"
-                  ? "cursor-not-allowed bg-gray-100"
-                  : "",
-                "border py-2 px-4 w-full outline-none focus:ring-2 focus:ring-indigo-400 rounded"
+                authReducer.user.type !== 'register'
+                  ? 'cursor-not-allowed bg-gray-100'
+                  : '',
+                'border py-2 px-4 w-full outline-none focus:ring-2 focus:ring-indigo-400 rounded'
               )}
               name="cf_password"
               id="cf_password"
               value={cf_password}
               onChange={handleChangeInput}
-              disabled={authReducer.user.type !== "register"}
+              disabled={authReducer.user.type !== 'register'}
             />
-            {authReducer.user.type !== "register" && (
+            {authReducer.user.type !== 'register' && (
               <small className="text-red-600">
                 Quick login account with {authReducer.user.type} can't use this
                 function
@@ -183,7 +183,7 @@ const UserInfo = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UserInfo;
+export default UserInfo

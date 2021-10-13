@@ -1,56 +1,56 @@
-import React, { useEffect, useRef, useState } from "react";
-import { IBlog, RootStore } from "../utils/TypeScript";
-import { useDispatch, useSelector } from "react-redux";
-import NotFound from "../components/global/NotFound";
-import CreateForm from "../components/cards/CreateForm";
-import CardPreview from "../components/cards/CardPreview";
-import ReactQuill from "../components/editor/ReactQuill";
-import { validCreateBlog } from "../utils/Valid";
-import { ALERT } from "../redux/types/alertTye";
-import { createBlog } from "../redux/actions/blogAction";
+import React, { useEffect, useRef, useState } from 'react'
+import { IBlog, RootStore } from '../utils/TypeScript'
+import { useDispatch, useSelector } from 'react-redux'
+import NotFound from '../components/global/NotFound'
+import CreateForm from '../components/cards/CreateForm'
+import CardPreview from '../components/cards/CardPreview'
+import ReactQuill from '../components/editor/ReactQuill'
+import { validCreateBlog } from '../utils/Valid'
+import { ALERT } from '../redux/types/alertTye'
+import { createBlog } from '../redux/actions/blogAction'
 
 const CreateBlog = () => {
   const initState = {
-    user: "",
-    title: "",
-    content: "",
-    description: "",
-    thumbnail: "",
-    category: "",
+    user: '',
+    title: '',
+    content: '',
+    description: '',
+    thumbnail: '',
+    category: '',
     createdAt: new Date().toISOString(),
-  };
+  }
 
-  const [blog, setBlog] = useState<IBlog>(initState);
-  const [body, setBody] = useState("");
+  const [blog, setBlog] = useState<IBlog>(initState)
+  const [body, setBody] = useState('')
 
-  const divRef = useRef<HTMLDivElement>(null);
-  const [text, setText] = useState("");
+  const divRef = useRef<HTMLDivElement>(null)
+  const [text, setText] = useState('')
 
-  const { authReducer, categories } = useSelector((state: RootStore) => state);
-  const dispatch = useDispatch();
+  const { authReducer, categories } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const div = divRef.current;
-    if (!div) return;
+    const div = divRef.current
+    if (!div) return
 
-    const text = div?.innerText as string;
-    setText(text);
-  }, [body]);
+    const text = div?.innerText as string
+    setText(text)
+  }, [body])
 
   const handleSubmit = async () => {
-    if (!authReducer.access_token) return;
+    if (!authReducer.access_token) return
 
-    const check = validCreateBlog({ ...blog, content: text });
+    const check = validCreateBlog({ ...blog, content: text })
     if (check.errLength !== 0) {
-      return dispatch({ type: ALERT, payload: { errors: check.errMsg } });
+      return dispatch({ type: ALERT, payload: { errors: check.errMsg } })
     }
 
-    let newData = { ...blog, content: body };
+    let newData = { ...blog, content: body }
 
-    dispatch(createBlog(newData, authReducer.access_token));
-  };
+    dispatch(createBlog(newData, authReducer.access_token))
+  }
 
-  if (!authReducer.access_token) return <NotFound />;
+  if (!authReducer.access_token) return <NotFound />
   return (
     <>
       <div className="my-4 flex flex-col lg:flex-row gap-3 bg-gray-100 rounded-lg p-3">
@@ -84,7 +84,7 @@ const CreateBlog = () => {
         </button>
       </p>
     </>
-  );
-};
+  )
+}
 
-export default React.memo(CreateBlog);
+export default React.memo(CreateBlog)

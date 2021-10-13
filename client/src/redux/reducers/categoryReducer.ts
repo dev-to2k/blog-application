@@ -1,5 +1,5 @@
-import { ICategory } from "../../utils/TypeScript";
-import * as types from "../types/categoryType";
+import { ICategory } from '../../utils/TypeScript'
+import * as types from '../types/categoryType'
 
 const categoryReducer = (
   state: ICategory[] = [],
@@ -7,24 +7,24 @@ const categoryReducer = (
 ): ICategory[] => {
   switch (action.type) {
     case types.CREATE_CATEGORY:
-      return [action.payload, ...state];
+      return [action.payload, ...state]
 
     case types.GET_CATEGORIES:
-      return action.payload;
+      return action.payload
 
     case types.UPDATE_CATEGORY:
       return state.map((item) =>
         item._id === action.payload._id
           ? { ...item, name: action.payload.name }
           : item
-      );
+      )
 
     case types.DELETE_CATEGORY:
-      return state.filter((item) => item._id !== action.payload);
+      return state.filter((item) => item._id !== action.payload)
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default categoryReducer;
+export default categoryReducer
