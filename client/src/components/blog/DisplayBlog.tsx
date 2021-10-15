@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { createComment } from '../../redux/actions/commentAction'
 
 import { IBlog, RootStore, IUser, IComment } from '../../utils/TypeScript'
 
@@ -12,7 +13,7 @@ interface IProps {
 }
 
 const DisplayBlog: React.FC<IProps> = ({ blog }) => {
-  const { authReducer } = useSelector((state: RootStore) => state)
+  const { authReducer, comments } = useSelector((state: RootStore) => state)
   const dispatch = useDispatch()
 
   const [showComments, setShowComments] = useState<IComment[]>([])
@@ -29,7 +30,14 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
     }
 
     setShowComments([data, ...showComments])
+    dispatch(createComment(data, authReducer.access_token))
   }
+
+  useEffect(() => {
+    if (comments.data.length === 0) return
+    setShowComments(comments.data)
+  }, [comments.data])
+
   return (
     <div className="blog-details">
       <h2 className="text-center text-8xl font-bold">{blog.title}</h2>
