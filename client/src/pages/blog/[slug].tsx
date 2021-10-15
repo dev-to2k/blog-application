@@ -35,7 +35,7 @@ const DetailBlog = () => {
 
   if (loading) return <Spinner />
   return (
-    <div className="my-4">
+    <div className="my-4 max-w-screen-lg mx-auto">
       {error && showErrMsg(error)}
 
       {blog && <DisplayBlog blog={blog} />}
