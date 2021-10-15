@@ -39,8 +39,6 @@ const DetailBlog = () => {
       {error && showErrMsg(error)}
 
       {blog && <DisplayBlog blog={blog} />}
-
-      <h2>Comments</h2>
     </div>
   )
 }
