@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { createComment } from '../../redux/actions/commentAction'
+import { createComment, getComments } from '../../redux/actions/commentAction'
 
 import { IBlog, RootStore, IUser, IComment } from '../../utils/TypeScript'
 
 import Input from '../comments/Input'
 import Comments from '../comments/Comments'
+import Spinner from '../global/Spinner'
 
 interface IProps {
   blog: IBlog
@@ -17,6 +18,7 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
   const dispatch = useDispatch()
 
   const [showComments, setShowComments] = useState<IComment[]>([])
+  const [loading, setLoading] = useState(false)
 
   const handleComment = (body: string) => {
     if (!authReducer.user || !authReducer.access_token) return
@@ -34,9 +36,22 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
   }
 
   useEffect(() => {
-    if (comments.data.length === 0) return
     setShowComments(comments.data)
   }, [comments.data])
+
+  const fetchComments = useCallback(
+    async (id: string) => {
+      setLoading(true)
+      await dispatch(getComments(id))
+      setLoading(false)
+    },
+    [dispatch]
+  )
+
+  useEffect(() => {
+    if (!blog._id) return
+    fetchComments(blog._id)
+  }, [blog._id, fetchComments])
 
   return (
     <div className="blog-details">
@@ -66,14 +81,25 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
       {authReducer.user ? (
         <Input callback={handleComment} />
       ) : (
-        <h5>
-          Please <Link to={`/login?blog/${blog._id}`}>login</Link> to comment.
+        <h5 className="mb-6 text-center text-2xl">
+          Please{' '}
+          <Link
+            to={`/login?blog/${blog._id}`}
+            className="text-indigo-600 font-semibold hover:underline"
+          >
+            login
+          </Link>{' '}
+          to comment.
         </h5>
       )}
 
-      {showComments?.map((comment, index) => (
-        <Comments key={index} comment={comment} />
-      ))}
+      {loading ? (
+        <Spinner />
+      ) : (
+        showComments?.map((comment, index) => (
+          <Comments key={index} comment={comment} />
+        ))
+      )}
     </div>
   )
 }
