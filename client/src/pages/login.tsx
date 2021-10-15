@@ -13,7 +13,10 @@ const Login = () => {
   const { authReducer } = useSelector((state: RootStore) => state)
 
   useEffect(() => {
-    if (authReducer.access_token) history.push('/')
+    if(authReducer.access_token) {
+      let url = history.location.search.replace('?', '/')
+      return history.push(url)
+    }
   }, [authReducer.access_token, history])
 
   return (
@@ -51,7 +54,7 @@ const Login = () => {
               <p>
                 Don't have an account?&nbsp;
                 <Link
-                  to={`/register`}
+                  to={`/register${history.location.search}`}
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   Register now

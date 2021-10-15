@@ -1,8 +1,10 @@
 import React from 'react'
 import RegisterForm from '../components/auth/RegisterForm'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 const Register = () => {
+  const history = useHistory()
+
   return (
     <>
       <div className="min-h-screen rounded-lg flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -19,7 +21,7 @@ const Register = () => {
               <p>
                 Have already an account?&nbsp;
                 <Link
-                  to={`/login`}
+                  to={`/login${history.location.search}`}
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   Login
