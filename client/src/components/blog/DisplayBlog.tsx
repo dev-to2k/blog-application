@@ -1,11 +1,35 @@
-import React from 'react'
-import { IBlog } from '../../utils/TypeScript'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+import { IBlog, RootStore, IUser, IComment } from '../../utils/TypeScript'
+
+import Input from '../comments/Input'
+import Comments from '../comments/Comments'
 
 interface IProps {
   blog: IBlog
 }
 
 const DisplayBlog: React.FC<IProps> = ({ blog }) => {
+  const { authReducer } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
+
+  const [showComments, setShowComments] = useState<IComment[]>([])
+
+  const handleComment = (body: string) => {
+    if (!authReducer.user || !authReducer.access_token) return
+
+    const data = {
+      content: body,
+      user: authReducer.user,
+      blog_id: blog._id as string,
+      blog_user_id: (blog.user as IUser)._id,
+      createdAt: new Date().toISOString(),
+    }
+
+    setShowComments([data, ...showComments])
+  }
   return (
     <div className="blog-details">
       <h2 className="text-center text-8xl font-bold">{blog.title}</h2>
@@ -28,6 +52,20 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
           __html: blog.content,
         }}
       />
+
+      <h3 className="font-semibold text-2xl mb-3">Comments</h3>
+
+      {authReducer.user ? (
+        <Input callback={handleComment} />
+      ) : (
+        <h5>
+          Please <Link to={`/login?blog/${blog._id}`}>login</Link> to comment.
+        </h5>
+      )}
+
+      {showComments?.map((comment, index) => (
+        <Comments key={index} comment={comment} />
+      ))}
     </div>
   )
 }
