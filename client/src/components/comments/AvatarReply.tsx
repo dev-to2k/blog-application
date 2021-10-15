@@ -9,14 +9,14 @@ interface IProps {
 }
 const AvatarReply: React.FC<IProps> = ({ user, reply_user }) => {
   return (
-    <div className="avatar_reply">
-      <img src={user.avatar} alt="avatar" />
+    <div className="avatar_reply flex my-3">
+      <img
+        src={user.avatar}
+        alt="avatar"
+        className="hidden object-cover w-10 h-10 mr-4 rounded-full sm:block"
+      />
 
-      <div className="ml-1">
-        <small>
-          <Link to={`/profile/${user._id}`}>{user.name}</Link>
-        </small>
-
+      <div className="ms-1">
         <small className="reply-text">
           Reply to{' '}
           <Link to={`/profile/${reply_user?._id}`}>{reply_user?.name}</Link>
