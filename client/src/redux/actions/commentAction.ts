@@ -6,6 +6,8 @@ import {
   GET_COMMENTS,
   ICreateCommentType,
   IGetCommentsType,
+  IReplyCommentType,
+  REPLY_COMMENT,
 } from '../types/commentType'
 
 import { IComment } from '../../utils/TypeScript'
@@ -40,6 +42,25 @@ export const getComments =
         payload: {
           data: res.data.comments,
           total: res.data.total,
+        },
+      })
+    } catch (err: any) {
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } })
+    }
+  }
+
+export const replyComment =
+  (data: IComment, token: string) =>
+  async (dispatch: Dispatch<IAlertType | IReplyCommentType>) => {
+    try {
+      const res = await postAPI('reply_comment', data, token)
+
+      dispatch({
+        type: REPLY_COMMENT,
+        payload: {
+          ...res.data,
+          user: data.user,
+          reply_user: data.reply_user,
         },
       })
     } catch (err: any) {
