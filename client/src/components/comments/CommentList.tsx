@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { IComment, RootStore } from '../../utils/TypeScript'
 
 import Input from './Input'
+import { replyComment } from '../../redux/actions/commentAction'
 
 interface IProps {
   comment: IComment
@@ -31,22 +32,16 @@ const CommentList: React.FC<IProps> = ({
       blog_user_id: comment.blog_user_id,
       content: body,
       reply_user: comment.user,
-      comment_root: comment._id,
+      comment_root: comment.comment_root || comment._id,
       createdAt: new Date().toISOString(),
     }
-    console.log(data)
+
     setShowReply([...showReply, data])
+    dispatch(replyComment(data, authReducer.access_token))
     setOnReply(false)
   }
   return (
     <div>
-      <Link
-        to={`/profile/${comment.user._id}`}
-        className="text-sm text-gray-700 hover:text-black uppercase mr-2"
-      >
-        {comment.user.name}
-      </Link>
-      <small> {new Date(comment.createdAt).toLocaleString()}</small>
       <div className="bg-gray-50 rounded-lg p-3 mt-2">
         <div
           className="mb-3"
@@ -55,11 +50,12 @@ const CommentList: React.FC<IProps> = ({
           }}
         />
         <small
-          className="cursor-pointer text-indigo-500 font-semibold"
+          className="cursor-pointer text-indigo-500 font-semibold mr-3"
           onClick={() => setOnReply(!onReply)}
         >
           {onReply ? 'Cancel' : 'Reply to'}
         </small>
+        <small> {new Date(comment.createdAt).toLocaleString()}</small>
       </div>
       {onReply && <Input callback={handleReply} />}
 
